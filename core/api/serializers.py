@@ -12,4 +12,21 @@ class PontoTuristicoSerializer(ModelSerializer):
 
     class Meta:
         model = PontoTuristico
-        fields = ('id', 'nome', 'descricao', 'foto', 'enderecos', 'atracoes', 'avaliacoes', 'exemplo')
+        fields = ('id', 'nome', 'descricao',
+                  'foto', 'enderecos', 'atracoes',
+                  'avaliacoes', 'exemplo')
+        read_only_fields =('comentarios', 'atracoes')
+
+
+    def cria_atracoes(self, atracoes, ponto):
+        for atracao in atracoes:
+            at = Atracao.objects,create(**atracao)
+            ponto.atracoes.add(at)
+
+    def create(self, validate_data):
+        atracoes = validated_data['atracoes']
+        del validate_data['atracoes']
+        ponto = PontoTuristico.objects.create(**validate_data)
+        self.cria_atracoes(atracoes, ponto)
+
+        return ponto

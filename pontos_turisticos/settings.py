@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
-
+import os
 from pathlib import Path
 from decouple import config
 
@@ -21,10 +21,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config('SECRET_KEY')
-DEBUG = config('DEBUG', default=False, cast=bool)
-
-ALLOWED_HOSTS = ['pontos-turisticos-treinamento.herokuapp.com/','localhost:8000']
+SECRET_KEY = 'django-insecure-is&x7w&t+jq0u08bz3i#kc&7@z8&tgh5(wuykc47jp%rlipd2g'
+DEBUG = True
+ALLOWED_HOSTS = []
 
 
 # Application definition
